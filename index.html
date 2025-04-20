@@ -65,6 +65,24 @@
 
     .qr {
       margin-top: 14px;
+      width: 130px;
+      height: 130px;
+      border-radius: 12px;
+      background-image: url('https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://wa.me/94754617604');
+      background-size: cover;
+      background-position: center;
+      animation: fadeInQR 0.8s ease-out forwards;
+      opacity: 0;
+      transform: scale(0.95);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @keyframes fadeInQR {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .button {
@@ -98,57 +116,10 @@
       from {opacity: 0;}
       to {opacity: 1;}
     }
-
-    .banner {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #00ffcc;
-      color: #121212;
-      text-align: center;
-      padding: 10px 8px;
-      font-size: 14px;
-      font-weight: 500;
-      display: none;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      animation: bannerSlide 0.7s ease-out;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      z-index: 9999;
-    }
-
-    @keyframes bannerSlide {
-      0% {
-        transform: translateY(-100%);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    .banner span {
-      font-weight: bold;
-    }
-
-    .close-banner {
-      background: transparent;
-      border: none;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #121212;
-    }
   </style>
 </head>
 
 <body oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onpaste="return false;" onselectstart="return false;" ondragstart="return false;">
-
-  <div class="banner" id="topBanner">
-    <span>Join our Signal Service Now! Live updates through WhatsApp call. First signal is free.</span>
-    <button class="close-banner" onclick="document.getElementById('topBanner').style.display='none'">×</button>
-  </div>
 
   <div class="popup-box">
     <h2>Crash Aviator Game Loss?</h2>
@@ -159,20 +130,13 @@
       <li>පළමු සිග්නල් 05 <span class="highlight">නොමිලේ</span></li>
       <li>සතිපතා ගාස්තුව: <span class="highlight">LKR 2500</span></li>
     </ul>
-    <div class="qr">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://wa.me/94754617604" alt="QR to WhatsApp">
-    </div>
+    <div class="qr"></div>
     <button class="button" onclick="window.location.href='https://wa.me/94754617604'">Whatsapp Call Now</button>
 
     <div class="countdown" id="countdown">End: 00:12</div>
   </div>
 
   <script>
-    // Show banner after 3 seconds
-    setTimeout(() => {
-      document.getElementById('topBanner').style.display = 'flex';
-    }, 3000);
-
     // Prevent back button
     history.pushState(null, null, location.href);
     window.onpopstate = () => {
