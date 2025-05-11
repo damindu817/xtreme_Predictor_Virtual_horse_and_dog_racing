@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-  <title>Signal Popup</title>
+  <title>Premium Signals</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #4cc9f0;
+      --background: #0a0a12;
+      --card-bg: #161622;
+      --text: #f8f9fa;
+      --text-secondary: #adb5bd;
+      --success: #4bb543;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
       overflow: hidden;
-      transition: opacity 1s ease;
+      transition: opacity 0.5s ease;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -24,58 +36,68 @@
     }
 
     .popup-box {
-      background-color: #1e1e1e;
-      border-radius: 16px;
-      box-shadow: 0 0 18px 4px rgba(0, 255, 204, 0.5);
-      padding: 20px;
-      max-width: 340px;
-      width: 100%;
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      padding: 24px;
+      max-width: 380px;
+      width: 90%;
       text-align: center;
       box-sizing: border-box;
-      animation: popupIn 0.8s ease-out;
+      animation: popupIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     @keyframes popupIn {
       0% {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px) scale(0.95);
       }
       100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
     h2 {
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: #00ffcc;
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-weight: 600;
     }
 
     p {
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
-      margin: 8px 0;
+      margin: 10px 0;
+      color: var(--text-secondary);
     }
 
     .highlight {
-      color: #00ffcc;
-      font-weight: bold;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .qr-container {
+      margin: 18px auto;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      display: inline-block;
     }
 
     .qr {
-      margin-top: 14px;
-      width: 130px;
-      height: 130px;
-      border-radius: 12px;
-      background-image: url('https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://wa.me/94754617604');
+      width: 140px;
+      height: 140px;
+      border-radius: 8px;
+      background-image: url('https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://wa.me/94751516501');
       background-size: cover;
       background-position: center;
       animation: fadeInQR 0.8s ease-out forwards;
       opacity: 0;
       transform: scale(0.95);
-      margin-left: auto;
-      margin-right: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     @keyframes fadeInQR {
@@ -86,30 +108,59 @@
     }
 
     .button {
-      margin-top: 14px;
-      background-color: #00ffcc;
-      color: #121212;
+      margin-top: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
       border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 13px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(67, 97, 238, 0.2);
+    }
+
+    .button:active {
+      transform: translateY(0);
     }
 
     ul {
       padding-left: 0;
       text-align: center;
-      font-size: 13px;
-      margin: 10px auto;
+      font-size: 14px;
+      margin: 16px auto;
       list-style-position: inside;
+      color: var(--text-secondary);
+    }
+
+    li {
+      margin: 8px 0;
     }
 
     .countdown {
       margin-top: 16px;
-      font-size: 16px;
-      color: #00ffcc;
-      font-weight: bold;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
       animation: fadeIn 1s ease;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(76, 201, 240, 0.1);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-left: 6px;
     }
 
     @keyframes fadeIn {
@@ -122,18 +173,24 @@
 <body oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onpaste="return false;" onselectstart="return false;" ondragstart="return false;">
 
   <div class="popup-box">
-    <h2>Crash Aviator Game Loss?</h2>
-    <p>ඔබත් <span class="highlight">Crash Aviator</span> ක්‍රීඩාවන්හි යෙදී පාඩු වුණාද?</p>
-    <p>එසේ නම්, දැන්ම අලුත්ම ක්‍රමයට සම්බන්ධ වන්න!</p>
-    <p><span class="highlight">1XBET Virtual Horse</span> සහ <span class="highlight">Dog Racing</span> ක්‍රීඩාවන් සඳහා <span class="highlight">සජීවී Whatsapp ඇමතුම්</span> හරහා විශ්වාසදායක සිග්නල් ලබාදෙන්නෙමු.</p>
+    <h2>Premium Signals</h2>
+    <p><span class="highlight">Crash Aviator</span> ක්‍රීඩා වලින් ඔබ පාඩු විඳිනවාද?</p>
+    <p>දැන්ම අපගේ නව ජයග්‍රහණ උපායමාර්ගය සමඟ සම්බන්ධ වන්න!</p>
+    <p><span class="highlight">1XBET Virtual Horse</span> සහ <span class="highlight">Dog Racing</span> සඳහා විශ්වාසදායක සංඥා <span class="highlight">live WhatsApp calls</span> හරහා ලබා ගන්න.</p>
     <ul>
-      <li>පළමු සිග්නල් 05 <span class="highlight">නොමිලේ</span></li>
+      <li>පළමු සංඥා 5 <span class="highlight badge">FREE</span></li>
       <li>සතිපතා ගාස්තුව: <span class="highlight">LKR 2500</span></li>
     </ul>
-    <div class="qr"></div>
-    <button class="button" onclick="window.location.href='https://wa.me/94751516501'">Whatsapp Call Now</button>
+    
+    <div class="qr-container">
+      <div class="qr"></div>
+    </div>
+    
+    <button class="button" onclick="window.location.href='https://wa.me/94751516501'">
+      WhatsApp හරහා සම්බන්ධ වන්න
+    </button>
 
-    <div class="countdown" id="countdown">End: 00:12</div>
+    <div class="countdown" id="countdown">Offer ends in: 00:15</div>
   </div>
 
   <script>
@@ -148,7 +205,7 @@
     const countdownElement = document.getElementById("countdown");
     const timer = setInterval(() => {
       timeLeft--;
-      countdownElement.textContent = `End: 00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
+      countdownElement.textContent = `Offer ends in: 00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
       if (timeLeft <= 0) {
         clearInterval(timer);
       }
@@ -159,8 +216,8 @@
       document.body.style.opacity = '0';
       setTimeout(() => {
         window.location.replace('https://damindu817.github.io/xtreme_predictor_menu-/');
-      }, 1000);
-    }, 16000);
+      }, 500);
+    }, 15000);
 
     // Disable mobile zoom gestures
     document.addEventListener('gesturestart', e => e.preventDefault());
@@ -174,6 +231,5 @@
       }
     });
   </script>
-
 </body>
 </html>
