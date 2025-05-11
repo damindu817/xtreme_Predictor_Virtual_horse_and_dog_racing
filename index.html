@@ -27,12 +27,18 @@
       justify-content: center;
       height: 100vh;
       overflow: hidden;
-      transition: opacity 0.8s ease;
+      transition: opacity 1s ease;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
       touch-action: manipulation;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     .popup-box {
@@ -44,21 +50,21 @@
       width: 90%;
       text-align: center;
       box-sizing: border-box;
-      animation: popupIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
       position: relative;
       border: 1px solid rgba(255, 255, 255, 0.05);
+      transform: scale(0.95);
       opacity: 0;
-      transform: translateY(20px);
+      animation: popupIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
     }
 
     @keyframes popupIn {
       0% {
         opacity: 0;
-        transform: translateY(20px) scale(0.98);
+        transform: scale(0.95) translateY(20px);
       }
       100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: scale(1) translateY(0);
       }
     }
 
@@ -87,8 +93,6 @@
       background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
       display: inline-block;
-      animation: fadeIn 0.8s ease 0.3s forwards;
-      opacity: 0;
     }
 
     .qr {
@@ -98,17 +102,7 @@
       background-image: url('https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://wa.me/94751516501');
       background-size: cover;
       background-position: center;
-      animation: fadeInQR 1s ease 0.5s forwards;
-      opacity: 0;
-      transform: scale(0.95);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    @keyframes fadeInQR {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
     }
 
     .button {
@@ -124,8 +118,6 @@
       width: 100%;
       transition: all 0.3s ease;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 0.8s ease 0.7s forwards;
-      opacity: 0;
     }
 
     .button:hover {
@@ -144,8 +136,6 @@
       margin: 16px auto;
       list-style-position: inside;
       color: var(--text-secondary);
-      animation: fadeIn 0.8s ease 0.4s forwards;
-      opacity: 0;
     }
 
     li {
@@ -157,8 +147,6 @@
       font-size: 14px;
       color: var(--text-secondary);
       font-weight: 500;
-      animation: fadeIn 0.8s ease 0.9s forwards;
-      opacity: 0;
     }
 
     .badge {
@@ -170,11 +158,6 @@
       font-size: 12px;
       font-weight: 500;
       margin-left: 6px;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
     }
   </style>
 </head>
@@ -209,7 +192,7 @@
       history.go(1);
     };
 
-    // Countdown animation
+    // Countdown timer
     let timeLeft = 15;
     const countdownElement = document.getElementById("countdown");
     const timer = setInterval(() => {
@@ -238,11 +221,6 @@
       if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '0')) {
         e.preventDefault();
       }
-    });
-
-    // Initialize animations
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.popup-box').style.animation = 'popupIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
     });
   </script>
 </body>
